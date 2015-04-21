@@ -24,18 +24,20 @@ public class Aquarium {
 
 	// Constructor
 	public Aquarium(int width, int height) {
-		if (width >= 10) {
-			this.width = width;
+		// width&height are the inner field of the aquarium without counting
+		// borders
+		if (width >= 12) {
+			this.width = width - 2;
 		} else {
 			System.out
-					.println("Fehler! Mindestmaße des Aquariums 10 x 1. Mindestbreite 10 wurde initialisiert.");
+					.println("Fehler! Mindestmaße des Aquariums 12 x 3. Mindestbreite 12 wurde initialisiert.");
 			this.width = 10;
 		}
-		if (height >= 1) {
-			this.height = height;
+		if (height >= 3) {
+			this.height = height - 2;
 		} else {
 			System.out
-					.println("Fehler! Mindestmaße des Aquariums 10 x 1. Mindesthöhe 1 wurde initialisiert.");
+					.println("Fehler! Mindestmaße des Aquariums 12 x 3. Mindesthöhe 3 wurde initialisiert.");
 			this.height = 1;
 		}
 		this.fishes = new Fish[height];
@@ -49,7 +51,7 @@ public class Aquarium {
 			// j: x-coordinate
 			for (int j = 0; j < seaworld[i].length; j++) {
 				// corners: '+' if i bottom and j right or left border
-				if (i == height + 1 && (j == 0) || (j == width + 1)) {
+				if (i == height + 1 && ((j == 0) || (j == width + 1))) {
 					seaworld[i][j] = '+';
 				}// bottom: '_' if i bottom and j not border
 				else if (i == height + 1) {
@@ -57,6 +59,9 @@ public class Aquarium {
 				}// borders: '|' j is left or right border
 				else if (j == 0 || j == width + 1) {
 					seaworld[i][j] = '|';
+				}// waves: '~' if i is top and j not border
+				else if (i == 0) {
+					seaworld[i][j]= '~';
 				}
 			}
 		}
