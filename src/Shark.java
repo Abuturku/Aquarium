@@ -13,7 +13,7 @@ public class Shark extends Fish {
 		return LOOK;
 	}
 	
-	public Shark(int yPos, int xPos) {
-		super(LOOK, REVERSED_LOOK, PROBABILITY_TO_CHANGE_HEIGHT, yPos, xPos);
+	public Shark() {
+		super(LOOK, REVERSED_LOOK, PROBABILITY_TO_CHANGE_HEIGHT);
 	}
 }

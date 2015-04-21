@@ -16,7 +16,6 @@ public abstract class Fish {
 	private final String LOOK_RIGHT;
 	private final int PROBABILITY_TO_CHANGE_HEIGHT;
 	private boolean looksRight;
-	private int xPos, yPos;
 
 	public boolean isLooksRight() {
 		return looksRight;
@@ -34,22 +33,6 @@ public abstract class Fish {
 		return LOOK_RIGHT;
 	}
 
-	public int getxPos() {
-		return xPos;
-	}
-
-	public void setxPos(int xPos) {
-		this.xPos = xPos;
-	}
-
-	public int getyPos() {
-		return yPos;
-	}
-
-	public void setyPos(int yPos) {
-		this.yPos = yPos;
-	}
-
 	public String getLOOK() {
 		if (looksRight) {
 			return LOOK_RIGHT;
@@ -62,17 +45,15 @@ public abstract class Fish {
 		return PROBABILITY_TO_CHANGE_HEIGHT;
 	}
 	
-	public Fish(String look, String reversedLook, int probabilityToChangeHeight, int yPos, int xPos){
+	public Fish(String look, String reversedLook, int probabilityToChangeHeight){
 		this.LOOK_LEFT=look;
 		this.LOOK_RIGHT=reversedLook;
 		this.PROBABILITY_TO_CHANGE_HEIGHT=probabilityToChangeHeight;
-		this.yPos=yPos;
-		this.xPos=xPos;
 		this.looksRight=false;
 	}
 	
 	public void swim(){
-		
+		//TODO
 	}
 	
 	public boolean willChangeHeight(){
