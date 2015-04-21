@@ -61,7 +61,7 @@ public class Aquarium {
 					seaworld[i][j] = '|';
 				}// waves: '~' if i is top and j not border
 				else if (i == 0) {
-					seaworld[i][j]= '~';
+					seaworld[i][j] = '~';
 				}
 			}
 		}
@@ -76,8 +76,14 @@ public class Aquarium {
 	}
 
 	// private Methode random Fische spawnen
+	// fish toString -> toCharArray
+	//
 
 	// private Methode Fische bewegen
+	//
+	// abfragen -> hoch/runter? -> tun
+	// links rechts immer pro zeitschritt
+	// Ab wann umdrehen -> ganzen fisch umdrehen
 
 	// public Methode fischwelten
 	// Thread.sleep(milli,nano)
