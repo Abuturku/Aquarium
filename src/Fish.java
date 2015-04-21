@@ -2,15 +2,17 @@
 public class Fish {
 
 	/* Attribute
-	 * Aussehen -> String
-	 * Wahrscheinlichkeit oben/unten -> int (prozentzahl)
+	 * private final String Aussehen
+	 * private final int Wahrscheinlichkeit oben/unten (prozentzahl)
 	 * 
 	 * Getter/Setter
 	 * 
 	 * Methoden
-	 * Schwimmen links/rechts -> void
-	 * Schwimmen hoch/runter -> void
-	 * (evtl. zusammenfassen)
+	 * public void Schwimmen
+	 * 		abfragen -> hoch/runter? -> tun
+	 * 		links rechts immer pro zeitschritt
+	 * 		Ab wann umdrehen -> ganzen fisch umdrehen
+	 * public boolean Schwimmen hoch/runter
 	 */
 	
 	

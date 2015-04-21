@@ -1,6 +1,7 @@
 
 public class Aquarium {
 	//private final int Attribute feste Breite, Hoehe
+	
 	//private Fish[] mit Länge Höhe
 	
 	//Getter,setter breite, hoehe
