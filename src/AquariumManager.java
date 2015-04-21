@@ -4,7 +4,7 @@ public class AquariumManager {
 	public static void main(String[] args) {
 		//Ausgabe leeres Aquarium testen -> übergabe Konstruktor parameter
 		Aquarium aqua = new Aquarium (30,7);
-		aqua.printEmptyAquarium();
+		aqua.printAquarium();
 		
 		//Ausgabe volles Aquarium testen -> "--"
 		

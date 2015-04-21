@@ -73,10 +73,11 @@ public class Aquarium {
 				}
 			}
 		}
+		spawnFishes();
 		return seaworld;
 	}
 
-	public void printEmptyAquarium() {
+	public void printAquarium() {
 		if (seaworld == null) {
 			createAquarium();
 		}
@@ -88,18 +89,47 @@ public class Aquarium {
 			System.out.println();
 		}
 	}
-	
-	private void spawnFishes(){
-		int xPosRand = (int) (Math.random()*width);
-		int yPos=0;
-		int randFish = (int) (Math.random()*4);
-		switch (randFish){
-		case 0: break;
+
+	private void spawnFishes() {
+
+		Fish fish = null;
+
+		for (int yPos = 1; yPos <= height; yPos++) {
+			fish = null;
+			int rand = (int) (Math.random() * 4);
+			switch (rand) {
+			case 0:
+				fish = new Carp();
+				break;
+			case 1:
+				fish = new Shark();
+				break;
+			case 2:
+				fish = new Blowfish();
+				break;
+			case 3:
+				fish = new Swordfish();
+				break;
+			}
+
+			int fishLength;
+			boolean lookright = ((int) (Math.random() * 2)) % 2 == 0;
+			fish.setLooksRight(lookright);
+			fishLength = fish.getLOOK().length();
+
+			int xMax = width - fishLength+1;
+
+			int xPosRand = (int) (Math.random() * xMax) + 1;
+
+			char[] fishtoCharArray = fish.getLOOK().toCharArray();
+			try {
+				System.arraycopy(fishtoCharArray, 0, seaworld[yPos], xPosRand, fishtoCharArray.length);
+			} catch (IndexOutOfBoundsException e) {
+
+				System.out.println("Index was: " + xPosRand + " " + yPos + " Fish: " + fish.getLOOK().length());
+			}
+			fishes[yPos-1] = fish;
 		}
-		
-//		if (xPosRand) {
-//			
-//		}		
 	}
 	// private Methode random Fische spawnen
 	// fish toString -> toCharArray

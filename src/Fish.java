@@ -25,14 +25,6 @@ public abstract class Fish {
 		this.looksRight = looksRight;
 	}
 
-	public String getREVERSED_LOOK() {
-		return LOOK_RIGHT;
-	}
-	
-	public String getReversedLook() {
-		return LOOK_RIGHT;
-	}
-
 	public String getLOOK() {
 		if (looksRight) {
 			return LOOK_RIGHT;
