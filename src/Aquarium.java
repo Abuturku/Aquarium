@@ -3,7 +3,7 @@ public class Aquarium {
 	private final int width;
 	private final int height;
 	private Fish[] fishes;
-	private char[][] seaworld;
+	private char[][] seaworld = null;
 
 	// Getter,setter
 	public Fish[] getFishes() {
@@ -20,6 +20,14 @@ public class Aquarium {
 
 	public int getHeight() {
 		return height;
+	}
+
+	public char[][] getSeaworld() {
+		return seaworld;
+	}
+
+	public void setSeaworld(char[][] seaworld) {
+		this.seaworld = seaworld;
 	}
 
 	// Constructor
@@ -43,7 +51,7 @@ public class Aquarium {
 		this.fishes = new Fish[height];
 	}
 
-	public void printEmptyAquarium() {
+	private char[][] createAquarium() {
 		seaworld = new char[height + 2][width + 2];
 
 		// i: y-coordinate
@@ -65,6 +73,13 @@ public class Aquarium {
 				}
 			}
 		}
+		return seaworld;
+	}
+
+	public void printEmptyAquarium() {
+		if (seaworld == null) {
+			createAquarium();
+		}
 		// print
 		for (int i = 0; i < seaworld.length; i++) {
 			for (int j = 0; j < seaworld[i].length; j++) {
@@ -72,9 +87,20 @@ public class Aquarium {
 			}
 			System.out.println();
 		}
-
 	}
-
+	
+	private void spawnFishes(){
+		int xPosRand = (int) (Math.random()*width);
+		int yPos=0;
+		int randFish = (int) (Math.random()*4);
+		switch (randFish){
+		case 0: break;
+		}
+		
+//		if (xPosRand) {
+//			
+//		}		
+	}
 	// private Methode random Fische spawnen
 	// fish toString -> toCharArray
 	//
