@@ -14,7 +14,7 @@ public class Blowfish extends Fish {
 		return LOOK;
 	}
 	
-	public Blowfish() {
-		super(LOOK, REVERSED_LOOK, PROBABILITY_TO_CHANGE_HEIGHT);
+	public Blowfish(int yPos, int xPos) {
+		super(LOOK, REVERSED_LOOK, PROBABILITY_TO_CHANGE_HEIGHT, yPos, xPos);
 	}
 }

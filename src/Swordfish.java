@@ -13,7 +13,7 @@ public class Swordfish extends Fish {
 		return LOOK;
 	}
 	
-	public Swordfish() {
-		super(LOOK, REVERSED_LOOK, PROBABILITY_TO_CHANGE_HEIGHT);
+	public Swordfish(int yPos, int xPos) {
+		super(LOOK, REVERSED_LOOK, PROBABILITY_TO_CHANGE_HEIGHT, yPos, xPos);
 	}
 }

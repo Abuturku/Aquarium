@@ -99,16 +99,16 @@ public class Aquarium {
 			int rand = (int) (Math.random() * 4);
 			switch (rand) {
 			case 0:
-				fish = new Carp();
+				fish = new Carp(yPos, 1);
 				break;
 			case 1:
-				fish = new Shark();
+				fish = new Shark(yPos, 1);
 				break;
 			case 2:
-				fish = new Blowfish();
+				fish = new Blowfish(yPos, 1);
 				break;
 			case 3:
-				fish = new Swordfish();
+				fish = new Swordfish(yPos, 1);
 				break;
 			}
 
@@ -120,7 +120,9 @@ public class Aquarium {
 			int xMax = width - fishLength+1;
 
 			int xPosRand = (int) (Math.random() * xMax) + 1;
-
+			
+			fish.setxPos(xPosRand);
+			
 			char[] fishtoCharArray = fish.getLOOK().toCharArray();
 			try {
 				System.arraycopy(fishtoCharArray, 0, seaworld[yPos], xPosRand, fishtoCharArray.length);

@@ -13,7 +13,7 @@ public class Carp extends Fish{
 		return LOOK;
 	}
 	
-	public Carp() {
-		super(LOOK, REVERSED_LOOK, PROBABILITY_TO_CHANGE_HEIGHT);
+	public Carp(int yPos, int xPos) {
+		super(LOOK, REVERSED_LOOK, PROBABILITY_TO_CHANGE_HEIGHT, yPos, xPos);
 	}
 }
