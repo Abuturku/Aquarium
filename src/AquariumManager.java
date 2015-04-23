@@ -3,7 +3,8 @@ public class AquariumManager {
 
 	public static void main(String[] args) {
 		//Ausgabe leeres Aquarium testen -> übergabe Konstruktor parameter
-		Aquarium aqua = new Aquarium (30,7);
+		Aquarium aqua = new Aquarium (30, 7);
+		//TODO Mindestmaße überarbeiten
 		aqua.printAquarium();
 		
 		//Ausgabe volles Aquarium testen -> "--"

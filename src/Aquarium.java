@@ -142,11 +142,11 @@ public class Aquarium {
 		if (fishes == null && seaworld == null) {
 			return false;
 		}
+		// delete old fishes
+		clearAquarium();
 		for (int i = 0; i < height; i++) {
 			int newX = fishes[i].getxPos();
 			int newY;
-			// delete old fishes
-			clearAquarium();
 			// move horizontal - right
 			if (fishes[i].isLookingRight()) {
 				newX++;
@@ -205,7 +205,7 @@ public class Aquarium {
 		while (moveFishes()) {
 			try {
 				printAquarium();
-				Thread.sleep(500, 0);
+				Thread.sleep(200, 0);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
