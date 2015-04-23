@@ -73,7 +73,9 @@ public class Aquarium {
 				}
 			}
 		}
-		spawnFishes();
+		if (fishes[0] == null) {
+			spawnFishes();
+		}
 		return seaworld;
 	}
 
@@ -140,34 +142,34 @@ public class Aquarium {
 		if (fishes == null && seaworld == null) {
 			return false;
 		}
-		for (int i = 0; i < fishes.length-1; i++) {
-			int newX, newY;
-			// delete old fish
-
+		for (int i = 0; i < height; i++) {
+			int newX = fishes[i].getxPos();
+			int newY;
+			// delete old fishes
+			clearAquarium();
 			// move horizontal - right
 			if (fishes[i].isLookingRight()) {
-				newX = fishes[i].getxPos() + 1;
-				if (newX < width + 1) {
-					// delete tail of fish
-					seaworld[i + 1][fishes[i].getxPos()] = ' ';
+				newX++;
+				if (newX <= (width - fishes[i].getLOOK().length() + 1)) {
 					// move fish
 					fishes[i].setxPos(newX);
 				} // turn around
 				else {
+					newX--;
 					fishes[i].setLooksRight(false);
+					fishes[i].setxPos(newX);
 				}
 			} // move horizontal - left
 			else {
-				newX = fishes[i].getxPos() - 1;
+				newX--;
 				if (newX > 0) {
-					// delete tail of fish
-					seaworld[i + 1][fishes[i].getxPos()
-							+ fishes[i].getLOOK().length()] = ' ';
 					// move fish
 					fishes[i].setxPos(newX);
 				} // turn around
 				else {
+					newX++;
 					fishes[i].setLooksRight(true);
+					fishes[i].setxPos(newX);
 				}
 			}
 
@@ -176,11 +178,11 @@ public class Aquarium {
 			// print fish
 			char[] fishtoCharArray = fishes[i].getLOOK().toCharArray();
 			try {
-				System.arraycopy(fishtoCharArray, 0, seaworld[i+1], newX,
+				System.arraycopy(fishtoCharArray, 0, seaworld[i + 1], newX,
 						fishtoCharArray.length);
 			} catch (IndexOutOfBoundsException e) {
 
-				System.out.println("Index was: " + newX + " " + i+1
+				System.out.println("Index was: " + newX + " " + i + 1
 						+ " Fish: " + fishes[i].getLOOK().length());
 			}
 		}
@@ -202,8 +204,8 @@ public class Aquarium {
 
 		while (moveFishes()) {
 			try {
-				Thread.sleep(1000,0);
 				printAquarium();
+				Thread.sleep(500, 0);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -212,6 +214,11 @@ public class Aquarium {
 
 	}
 
-	// public Methode fischwelten
-	// Thread.sleep(milli,nano)
+	private void clearAquarium() {
+		for (int i = 1; i < seaworld.length - 1; i++) {
+			for (int j = 1; j < seaworld[i].length - 1; j++) {
+				seaworld[i][j] = ' ';
+			}
+		}
+	}
 }
