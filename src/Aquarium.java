@@ -117,53 +117,99 @@ public class Aquarium {
 			fish.setLooksRight(lookright);
 			fishLength = fish.getLOOK().length();
 
-			int xMax = width - fishLength+1;
+			int xMax = width - fishLength + 1;
 
 			int xPosRand = (int) (Math.random() * xMax) + 1;
-			
+
 			fish.setxPos(xPosRand);
-			
+
 			char[] fishtoCharArray = fish.getLOOK().toCharArray();
 			try {
-				System.arraycopy(fishtoCharArray, 0, seaworld[yPos], xPosRand, fishtoCharArray.length);
+				System.arraycopy(fishtoCharArray, 0, seaworld[yPos], xPosRand,
+						fishtoCharArray.length);
 			} catch (IndexOutOfBoundsException e) {
 
-				System.out.println("Index was: " + xPosRand + " " + yPos + " Fish: " + fish.getLOOK().length());
+				System.out.println("Index was: " + xPosRand + " " + yPos
+						+ " Fish: " + fish.getLOOK().length());
 			}
-			fishes[yPos-1] = fish;
+			fishes[yPos - 1] = fish;
 		}
 	}
 
-	private boolean moveFishes(){
-		if (fishes==null&&seaworld==null){
+	private boolean moveFishes() {
+		if (fishes == null && seaworld == null) {
 			return false;
 		}
-		for (Fish fish : fishes) {
-			//move horizontal
-			if (fish.isLookingRight()){
-				
+		for (int i = 0; i < fishes.length-1; i++) {
+			int newX, newY;
+			// delete old fish
+
+			// move horizontal - right
+			if (fishes[i].isLookingRight()) {
+				newX = fishes[i].getxPos() + 1;
+				if (newX < width + 1) {
+					// delete tail of fish
+					seaworld[i + 1][fishes[i].getxPos()] = ' ';
+					// move fish
+					fishes[i].setxPos(newX);
+				} // turn around
+				else {
+					fishes[i].setLooksRight(false);
+				}
+			} // move horizontal - left
+			else {
+				newX = fishes[i].getxPos() - 1;
+				if (newX > 0) {
+					// delete tail of fish
+					seaworld[i + 1][fishes[i].getxPos()
+							+ fishes[i].getLOOK().length()] = ' ';
+					// move fish
+					fishes[i].setxPos(newX);
+				} // turn around
+				else {
+					fishes[i].setLooksRight(true);
+				}
 			}
-			
-			//move vertical
-			
+
+			// move vertical
+
+			// print fish
+			char[] fishtoCharArray = fishes[i].getLOOK().toCharArray();
+			try {
+				System.arraycopy(fishtoCharArray, 0, seaworld[i+1], newX,
+						fishtoCharArray.length);
+			} catch (IndexOutOfBoundsException e) {
+
+				System.out.println("Index was: " + newX + " " + i+1
+						+ " Fish: " + fishes[i].getLOOK().length());
+			}
 		}
+
 		return true;
 	}
+
 	// private Methode Fische bewegen
 	//
 	// abfragen -> hoch/runter? -> tun
 	// links rechts immer pro zeitschritt
 	// Ab wann umdrehen -> ganzen fisch umdrehen
-	
-	public void seaworlds(){
-		if (!moveFishes()){
-			System.out.println("ERROR: Wheter there are no fishes available or the aquarium doesn't exist.");
+
+	public void seaworlds() {
+		if (!moveFishes()) {
+			System.out
+					.println("ERROR: Wheter there are no fishes available or the aquarium doesn't exist.");
 		}
-		
-		while (moveFishes()){
-			
+
+		while (moveFishes()) {
+			try {
+				Thread.sleep(1000,0);
+				printAquarium();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
+
 	}
 
 	// public Methode fischwelten

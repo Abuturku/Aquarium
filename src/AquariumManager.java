@@ -7,6 +7,10 @@ public class AquariumManager {
 		aqua.printAquarium();
 		
 		//Ausgabe volles Aquarium testen -> "--"
+		aqua.seaworlds();
+		
+		
+		
 		
 		//Scan: einlesen übergabewerte
 		//	unzulässige Eingaben prüfen -> fehlerbehandlung (try/catch / if)
