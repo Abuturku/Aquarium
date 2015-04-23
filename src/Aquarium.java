@@ -38,19 +38,20 @@ public class Aquarium {
 			this.width = width - 2;
 		} else {
 			System.out
-					.println("Fehler! Mindestmaße des Aquariums 12 x 3. Mindestbreite 12 wurde initialisiert.");
+					.println("ERROR! Minimum size of the Aquarium is 12 x 6. Minimum width was initialized with 12.");
 			this.width = 10;
 		}
-		if (height >= 3) {
+		if (height >= 4) {
 			this.height = height - 2;
 		} else {
 			System.out
-					.println("Fehler! Mindestmaße des Aquariums 12 x 3. Mindesthöhe 3 wurde initialisiert.");
-			this.height = 1;
+					.println("ERROR! Minimum size of the Aquarium is 12 x 6. Minimum height was initialized with 6.");
+			this.height = 2;
 		}
-		this.fishes = new Fish[height];
+		this.fishes = new Fish[this.height];
 	}
 
+	// Methods
 	private char[][] createAquarium() {
 		seaworld = new char[height + 2][width + 2];
 
@@ -73,7 +74,7 @@ public class Aquarium {
 				}
 			}
 		}
-		if (fishes[0] == null) {
+		if (fishes == null || fishes[0] == null) {
 			spawnFishes();
 		}
 		return seaworld;
@@ -146,7 +147,7 @@ public class Aquarium {
 		clearAquarium();
 		for (int i = 0; i < height; i++) {
 			int newX = fishes[i].getxPos();
-			int newY;
+			int newY = fishes[i].getyPos();
 			// move horizontal - right
 			if (fishes[i].isLookingRight()) {
 				newX++;
@@ -175,10 +176,34 @@ public class Aquarium {
 
 			// move vertical
 
+			if (fishes[i].willChangeHeight()) {
+				// no way up?
+				if (fishes[i].getyPos() == 1) {
+					// move fish down
+					newY++;
+				}
+				// no way down?
+				else if (fishes[i].getyPos() == height) {
+					// move fish up
+					newY--;
+				}
+				// random
+				else {
+					// random up or down
+					boolean up = ((int) (Math.random() * 2) % 2) == 0;
+					if (up) {
+						newY--;
+					} else {
+						newY++;
+					}
+				}
+				fishes[i].setyPos(newY);
+			}
+
 			// print fish
 			char[] fishtoCharArray = fishes[i].getLOOK().toCharArray();
 			try {
-				System.arraycopy(fishtoCharArray, 0, seaworld[i + 1], newX,
+				System.arraycopy(fishtoCharArray, 0, seaworld[newY], newX,
 						fishtoCharArray.length);
 			} catch (IndexOutOfBoundsException e) {
 
@@ -190,13 +215,12 @@ public class Aquarium {
 		return true;
 	}
 
-	// private Methode Fische bewegen
-	//
-	// abfragen -> hoch/runter? -> tun
-	// links rechts immer pro zeitschritt
-	// Ab wann umdrehen -> ganzen fisch umdrehen
-
 	public void seaworlds() {
+
+		if (seaworld == null) {
+			createAquarium();
+		}
+
 		if (!moveFishes()) {
 			System.out
 					.println("ERROR: Wheter there are no fishes available or the aquarium doesn't exist.");
