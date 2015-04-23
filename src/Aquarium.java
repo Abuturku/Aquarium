@@ -131,15 +131,38 @@ public class Aquarium {
 			fishes[yPos-1] = fish;
 		}
 	}
-	// private Methode random Fische spawnen
-	// fish toString -> toCharArray
-	//
 
+	private boolean moveFishes(){
+		if (fishes==null&&seaworld==null){
+			return false;
+		}
+		for (Fish fish : fishes) {
+			//move horizontal
+			if (fish.isLookingRight()){
+				
+			}
+			
+			//move vertical
+			
+		}
+		return true;
+	}
 	// private Methode Fische bewegen
 	//
 	// abfragen -> hoch/runter? -> tun
 	// links rechts immer pro zeitschritt
 	// Ab wann umdrehen -> ganzen fisch umdrehen
+	
+	public void seaworlds(){
+		if (!moveFishes()){
+			System.out.println("ERROR: Wheter there are no fishes available or the aquarium doesn't exist.");
+		}
+		
+		while (moveFishes()){
+			
+		}
+		
+	}
 
 	// public Methode fischwelten
 	// Thread.sleep(milli,nano)

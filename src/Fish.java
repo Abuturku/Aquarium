@@ -17,7 +17,7 @@ public abstract class Fish {
 	private final int PROBABILITY_TO_CHANGE_HEIGHT;
 	private boolean looksRight;
 
-	public boolean isLooksRight() {
+	public boolean isLookingRight() {
 		return looksRight;
 	}
 
